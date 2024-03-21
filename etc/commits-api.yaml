@@ -1,0 +1,11 @@
+mode = "dev"
+name = "commits-api"
+log.mode = "console"
+log.encoding = "json"
+log.timeformat = "2006-01-02T15:04:05Z07:00"
+
+host = "0.0.0.0"
+port = 8888
+
+[mysql]
+dsn = "root:12345678@tcp(127.0.0.1:3306)/odin_data?charset=utf8mb4&parseTime=True&loc=Local"

@@ -1,0 +1,72 @@
+syntax = "v1"
+
+type Pong {
+	Message string `json:"message"`
+}
+
+type ListRepoReq {
+	StartDate string `form:"start_date"`
+	EndDate   string `form:"end_date"`
+}
+
+type RepoInfo {
+	Repo       string `json:"repo"`
+	Branch     string `json:"branch"`
+	Total      int    `json:"total"`
+	DeptNameT0 string `json:"dept_name_t0"`
+	DeptNameT1 string `json:"dept_name_t1"`
+	DeptNameT2 string `json:"dept_name_t2"`
+	DeptNameT3 string `json:"dept_name_t3"`
+}
+
+type PathRepo {
+	Repo   string `path:"repo"`
+	Status string `path:"status"`
+	Name   string `json:"name"`
+	Foo    string `form:"foo"`
+}
+
+type RepoAnalysisResp {
+	Resutl string `json:"result"`
+}
+
+type (
+	SignDemoReq {
+		Msg string `json:"msg"`
+	}
+	SignDemoResp {
+		Msg string `json:"msg"`
+	}
+)
+
+// type ListRepoResp {
+//  Data []RepoInfo `json:"data"`
+// }
+@server (
+	// jwt:        Auth // 对当前 Foo 语法块下的所有路由，开启 jwt 认证，不需要则请删除此行
+	// prefix: /v1/commits // 对当前 Foo 语法块下的所有路由，新增 /v1 路由前缀，不需要则请删除此行
+	// group:      g1 // 对当前 Foo 语法块下的所有路由，路由归并到 g1 目录下，不需要则请删除此行
+	timeout: 200ms // 对当前 Foo 语法块下的所有路由进行超时配置，不需要则请删除此行
+	// middleware: AuthInterceptor // 对当前 Foo 语法块下的所有路由添加中间件，不需要则请删除此行
+	maxBytes: 1048576 // 对当前 Foo 语法块下的所有路由添加请求体大小控制，单位为 byte,goctl 版本 >= 1.5.0 才支持
+)
+service commits-api {
+	@handler ping
+	get /ping returns (Pong)
+}
+
+@server (
+	// jwt:        Auth // 对当前 Foo 语法块下的所有路由，开启 jwt 认证，不需要则请删除此行
+	prefix: /v1/commits / / 对当前 Foo 语法块下的所有路由，新增 /v1 路由前缀，不需要则请删除此行
+	// group:      g1 // 对当前 Foo 语法块下的所有路由，路由归并到 g1 目录下，不需要则请删除此行
+	timeout: 3s // 对当前 Foo 语法块下的所有路由进行超时配置，不需要则请删除此行
+	// middleware: AuthInterceptor // 对当前 Foo 语法块下的所有路由添加中间件，不需要则请删除此行
+	maxBytes: 1048576 // 对当前 Foo 语法块下的所有路由添加请求体大小控制，单位为 byte,goctl 版本 >= 1.5.0 才支持
+)
+service commits-api {
+	@handler commitsList
+	get /active/list (ListRepoReq) returns (RepoInfo)
+
+	@handler submitAnalysis
+	post /active/:repo/anlysis/:status (PathRepo) returns (RepoAnalysisResp)
+}

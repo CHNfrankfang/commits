@@ -1,0 +1,1 @@
+{"@timestamp":"2024-03-19T20:06:35+08:00","caller":"logic/commitslistlogic.go:60","content":"code: 1000, msg: Get idata data failed","level":"error","span":"8711ef9195c63dea","trace":"1808a3e3b6234d14da4b2a8b7e01fc8c"}

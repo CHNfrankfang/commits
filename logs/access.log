@@ -1,0 +1,2 @@
+{"@timestamp":"2024-03-19T20:06:35+08:00","caller":"handler/loghandler.go:147","content":"[HTTP] 200 - GET /v1/commits/active/list?start_date=2024-03-01\u0026end_date=2024-03-30 - 127.0.0.1:57878 - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36","duration":"514.9ms","level":"info","span":"8711ef9195c63dea","trace":"1808a3e3b6234d14da4b2a8b7e01fc8c"}
+{"@timestamp":"2024-03-19T20:07:28+08:00","caller":"proc/shutdown.go:58","content":"Got signal 2, shutting down...","level":"info"}
